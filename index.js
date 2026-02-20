@@ -31,7 +31,7 @@ app.post("/signup", async (req, res) => {
     const zodType = z.object({
         userName: z.string(),
         password: z.string(),
-        email: z.email()
+        email: z.string().email()
     });
     console.log(body)
 
