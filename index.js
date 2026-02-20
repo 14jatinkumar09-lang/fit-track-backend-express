@@ -59,7 +59,7 @@ app.post("/signup", async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         secure: true,              // MUST be true in production
-        sameSite: "lax",          // allow cross-domain cookies
+        sameSite: "none",          // allow cross-domain cookies
         // maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
     });
 
