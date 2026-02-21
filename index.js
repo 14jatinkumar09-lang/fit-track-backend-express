@@ -24,7 +24,7 @@ app.use(cors({
 })) ;
 app.use(express.json())
 app.use(cookieParser()) ;
-
+app.options("*" , cors()) ;
 
 app.post("/signup", async (req, res) => {
     const body = req.body;
