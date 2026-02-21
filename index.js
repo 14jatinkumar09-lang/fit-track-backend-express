@@ -121,7 +121,7 @@ app.post("/login", async (req, res) => {
     res.cookie("token", token, {
         httpOnly: "true" ,
         secure: true,              // MUST be true in production
-        sameSite: "lax",          // allow cross-domain cookies
+        sameSite: "none",          // allow cross-domain cookies
         
     }); 
     // console.table(res.cookie) ;
@@ -298,8 +298,12 @@ app.post("/editDetails",auth , async(req,res)=>{
 
 
 
-app.get("/logout"  , async(req,res) => {
-    res.clearCookie("token") 
+app.get("/logout" , auth , async(req,res) => {
+    res.clearCookie("token" , {
+        httpOnly: true,
+        secure: true,              // MUST be true in production
+        sameSite: "none",          // allow cross-domain cookies
+    }) ;
     return res.status(200).json({
         msg : "logout successful"
     })
