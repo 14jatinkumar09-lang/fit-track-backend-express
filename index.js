@@ -20,7 +20,7 @@ const app = express();
 app.use(cors({
     origin : `${process.env.ORIGIN_URL} ` || "http://localhost:5173/" ,
     credentials: true ,
-    sameSite : "none" ,
+    sameSite : true ,
 })) ;
 app.use(express.json())
 app.use(cookieParser()) ;
@@ -119,7 +119,7 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign(body, process.env.JWT_KEY);
 
     res.cookie("token", token, {
-        httpOnly: "true" ,
+        httpOnly: true ,
         secure: true,              // MUST be true in production
         sameSite: "lax",          // allow cross-domain cookies
         
