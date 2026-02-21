@@ -17,11 +17,12 @@ import express from 'express';
 import mongoose from "mongoose";
 const app = express();
 /////////////////////////////////
-app.use(cors({
-    origin : `${process.env.ORIGIN_URL} ` || "http://localhost:5173/" ,
-    credentials: true ,
-    // sameSite : "none" ,
-})) ;
+// app.use(cors({
+//     origin : `${process.env.ORIGIN_URL} ` || "http://localhost:5173/" ,
+//     credentials: true ,
+//     // sameSite : "none" ,
+// })) ;
+app.use(cors()) ;
 app.use(express.json())
 app.use(cookieParser()) ;
 // app.options("*" , cors()) ;
