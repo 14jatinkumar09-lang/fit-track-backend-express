@@ -17,12 +17,12 @@ import express from 'express';
 import mongoose from "mongoose";
 const app = express();
 /////////////////////////////////
-// app.use(cors({
-//     origin : `${process.env.ORIGIN_URL} ` || "http://localhost:5173/" ,
-//     credentials: true ,
-//     // sameSite : "none" ,
-// })) ;
-app.use(cors()) ;
+app.use(cors({
+    origin : `${process.env.ORIGIN_URL} ` || "http://localhost:5173/" ,
+    credentials: true ,
+    // sameSite : "none" ,
+})) ;
+// app.use(cors()) ;
 app.use(express.json())
 app.use(cookieParser()) ;
 // app.options("*" , cors()) ;
@@ -61,7 +61,8 @@ app.post("/signup", async (req, res) => {
         httpOnly: true,
         secure: true,              // MUST be true in production
         sameSite: "none",          // allow cross-domain cookies
-        // maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+        maxAge: 10 * 365 * 24 * 60 * 60 * 1000 // 10 years
+
     });
 
 
@@ -123,7 +124,8 @@ app.post("/login", async (req, res) => {
         httpOnly: true ,
         secure: true,              // MUST be true in production
         sameSite: "none",          // allow cross-domain cookies
-        
+        maxAge: 10 * 365 * 24 * 60 * 60 * 1000 // 10 years
+
     }); 
     // console.table(res.cookie) ;
 
